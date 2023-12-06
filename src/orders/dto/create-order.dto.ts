@@ -1,9 +1,11 @@
 export class CreateOrderDto {
-    clientID: number
-    productID: number
-    orderDate: string
-    quantity: number
-    unitPrice: number
-    comment: string
-    totalAmount: number
+    
+    ClientID: number
+    ProductID: number
+    OrderDate: string
+    //quantity: number
+    //unitPrice: number
+    Comment: string
+    //totalAmount: number
+    Orders: []
 }

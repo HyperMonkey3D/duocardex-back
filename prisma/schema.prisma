@@ -28,18 +28,21 @@ model Product {
   ProductName String
   Description String
   Price       Decimal
-  Orders      Order[]
+ 
 }
 
 model Order {
-  OrderID     Int      @id @default(autoincrement())
+  ID     Int      @id @default(autoincrement())
+  OrderID  String
   ClientID    String
   ProductID   Int
+  ProductName String
   OrderDate   DateTime
   Quantity    Int
   UnitPrice   Decimal
   Comment     String
   TotalAmount Decimal
+
   Client      Client   @relation(fields: [ClientID], references: [ClientID])
-  Product     Product  @relation(fields: [ProductID], references: [ProductID])
+  
 }

@@ -8,35 +8,40 @@ export class OrdersService {
 
   constructor(private prisma:PrismaService){}
 
-  create(data) {
-    return this.prisma.order.create({data})
+  async create(data) {
+    try {
+      console.log("success posting order", data.ClientID)
+      return this.prisma.order.create({data})
+    } catch (error) {
+      console.log(error)
+    }
+    
+    
   }
 
   findAll() {
     return this.prisma.order.findMany()
   }
 
-  findOne(id: number) {
-    return this.prisma.order.findUnique({
-      where: {
-        OrderID: id
-      }
+  findOne(orderId: string) {
+    return this.prisma.order.findMany({
+      where: { OrderID: orderId}
     });
   }
 
-  update(id: number, updateOrderDto) {
-    return this.prisma.order.update({
+  update(orderId: string, updateOrderDto) {
+    return this.prisma.order.updateMany({
       where: {
-        OrderID: id
+        OrderID: orderId
       },
       data: updateOrderDto
     })
   }
 
-  remove(id: number) {
-    return this.prisma.order.delete({
+  remove(orderId: string) {
+    return this.prisma.order.deleteMany({
       where: {
-        OrderID: id
+        OrderID: orderId
       }
     })
   }
